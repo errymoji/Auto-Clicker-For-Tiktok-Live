@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Clicker Setup Tutorial</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --secondary-color: #e2e8f0;
+            --secondary-hover: #cbd5e1;
+            --bg-color: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --card-bg: #ffffff;
+            --code-bg: #1e293b;
+            --code-text: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            min-height: 400px;
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 28px;
+            color: var(--text-main);
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .tutorial-steps {
+            font-size: 1.15em;
+            margin-bottom: 30px;
+            color: var(--text-muted);
+            padding-left: 20px;
+        }
+
+        .tutorial-steps li {
+            margin-bottom: 16px;
+        }
+
+        strong {
+            color: var(--text-main);
+        }
+
+        kbd {
+            background-color: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: monospace;
+            font-size: 0.9em;
+            color: #334155;
+            box-shadow: 0 2px 0 #cbd5e1;
+        }
+
+        /* Code Block Styling */
+        .code-container {
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 25px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #0f172a;
+            padding: 10px 15px;
+            border-bottom: 1px solid #334155;
+        }
+
+        .code-title {
+            color: #94a3b8;
+            font-family: monospace;
+            font-size: 14px;
+        }
+
+        .copy-btn {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        .copy-btn:hover {
+            background-color: #2563eb;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 20px;
+            margin: 0;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            max-height: 400px;
+        }
+
+        /* Buttons & Footer */
+        .action-footer {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+            border: none;
+        }
+
+        .next-btn {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .next-btn:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        .prev-btn {
+            background-color: var(--secondary-color);
+            color: var(--text-main);
+        }
+
+        .prev-btn:hover {
+            background-color: var(--secondary-hover);
+        }
+
+        .success-box {
+            background-color: #dcfce7;
+            border-left: 4px solid #22c55e;
+            padding: 15px 20px;
+            color: #166534;
+            border-radius: 4px;
+            margin-top: 20px;
+            font-weight: 500;
+        }
+
+        /* Step Visibility */
+        .step-section {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .step-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- STEP 1 CONTENT -->
+        <div id="step1" class="step-section active">
+            <h1>Step 1: Create the Extension Files</h1>
+            
+            <ol class="tutorial-steps">
+                <li><strong>Open Command Prompt as Administrator</strong> (Search for "cmd" in the Windows start menu, right-click, and select "Run as administrator").</li>
+                <li><strong>Copy</strong> the entire block of code below using the copy button.</li>
+                <li><strong>Paste</strong> it into the CMD window and hit <strong>Enter</strong>.</li>
+            </ol>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="code-title">CMD / Batch Script</span>
+                    <button class="copy-btn" onclick="copyCode()" id="copyBtn">Copy Code</button>
+                </div>
+<pre><code id="codeBlock">chcp 65001
+mkdir "%USERPROFILE%\Desktop\Auto Clicker"
+cd /d "%USERPROFILE%\Desktop\Auto Clicker"
+
+&gt;content.js echo (function() {
+&gt;&gt;content.js echo     let isActive = false;
+&gt;&gt;content.js echo     let timer = null;
+&gt;&gt;content.js echo     let interval = null;
+&gt;&gt;content.js echo     const duration = 30 * 60 * 1000; // 30 minutes in milliseconds
+&gt;&gt;content.js echo.
+&gt;&gt;content.js echo     function stopHoldingL() {
+&gt;&gt;content.js echo         if (!isActive) return;
+&gt;&gt;content.js echo         isActive = false;
+&gt;&gt;content.js echo         clearInterval(interval);
+&gt;&gt;content.js echo         clearTimeout(timer);
+&gt;&gt;content.js echo         
+&gt;&gt;content.js echo         // Release the 'L' key
+&gt;&gt;content.js echo         document.dispatchEvent(new KeyboardEvent('keyup', { key: 'l', code: 'KeyL', keyCode: 76, bubbles: true }));
+&gt;&gt;content.js echo         console.log("🔴 Stopped pressing 'L'");
+&gt;&gt;content.js echo     }
+&gt;&gt;content.js echo.
+&gt;&gt;content.js echo     function startHoldingL() {
+&gt;&gt;content.js echo         isActive = true;
+&gt;&gt;content.js echo         console.log("🟢 Started pressing 'L' for up to 30 minutes");
+&gt;&gt;content.js echo         
+&gt;&gt;content.js echo         // Initial keydown event
+&gt;&gt;content.js echo         document.dispatchEvent(new KeyboardEvent('keydown', { key: 'l', code: 'KeyL', keyCode: 76, bubbles: true }));
+&gt;&gt;content.js echo.
+&gt;&gt;content.js echo         // Repeat the keydown event to simulate holding the key (10 times a second)
+&gt;&gt;content.js echo         interval = setInterval(() =^&gt; {
+&gt;&gt;content.js echo             document.dispatchEvent(new KeyboardEvent('keydown', { key: 'l', code: 'KeyL', keyCode: 76, bubbles: true }));
+&gt;&gt;content.js echo         }, 100); 
+&gt;&gt;content.js echo.
+&gt;&gt;content.js echo         // Auto-stop after 30 minutes
+&gt;&gt;content.js echo         timer = setTimeout(() =^&gt; {
+&gt;&gt;content.js echo             console.log("⏱️ 30 minutes reached.");
+&gt;&gt;content.js echo             stopHoldingL();
+&gt;&gt;content.js echo         }, duration);
+&gt;&gt;content.js echo     }
+&gt;&gt;content.js echo.
+&gt;&gt;content.js echo     // Listen for your physical keyboard presses
+&gt;&gt;content.js echo     document.addEventListener('keydown', (e) =^&gt; {
+&gt;&gt;content.js echo         // Check if Shift AND 'L' are pressed
+&gt;&gt;content.js echo         if (e.shiftKey ^&amp;^&amp; e.code === 'KeyL') {
+&gt;&gt;content.js echo             e.preventDefault(); // Prevents it from actually typing 'L' in a chat box
+&gt;&gt;content.js echo             
+&gt;&gt;content.js echo             if (isActive) {
+&gt;&gt;content.js echo                 stopHoldingL(); // Turn off if already on
+&gt;&gt;content.js echo             } else {
+&gt;&gt;content.js echo                 startHoldingL(); // Turn on if currently off
+&gt;&gt;content.js echo             }
+&gt;&gt;content.js echo         }
+&gt;&gt;content.js echo     });
+&gt;&gt;content.js echo.
+&gt;&gt;content.js echo     console.log("✅ Script loaded successfully! Click anywhere on the webpage, then press 'Shift + L' to toggle.");
+&gt;&gt;content.js echo })();
+
+&gt;manifest.json echo {
+&gt;&gt;manifest.json echo   "manifest_version": 3,
+&gt;&gt;manifest.json echo   "name": "TikTok Live L-Holder",
+&gt;&gt;manifest.json echo   "version": "1.0",
+&gt;&gt;manifest.json echo   "description": "Auto presses L on TikTok Lives",
+&gt;&gt;manifest.json echo   "content_scripts": [
+&gt;&gt;manifest.json echo     {
+&gt;&gt;manifest.json echo       "matches": ["*://*.tiktok.com/*"],
+&gt;&gt;manifest.json echo       "js": ["content.js"]
+&gt;&gt;manifest.json echo     }
+&gt;&gt;manifest.json echo   ]
+&gt;&gt;manifest.json echo }
+
+echo.
+echo ✅ Folder and files have been successfully created on your Desktop!</code></pre>
+            </div>
+
+            <div class="action-footer">
+                <button class="btn next-btn" onclick="goToStep(2)">
+                    Next Step 
+                    <span aria-hidden="true">&rarr;</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- STEP 2 CONTENT -->
+        <div id="step2" class="step-section">
+            <h1>Step 2: Install and Run the Extension</h1>
+            
+            <ol class="tutorial-steps">
+                <li>Open your web browser and go to the <strong>Extensions</strong> page (you can type <code>chrome://extensions</code> in the URL bar), then turn on <strong>Developer Mode</strong> at the top right.</li>
+                <li>Click on the <strong>"Load Unpacked"</strong> button.</li>
+                <li>Select the <strong>"Auto Clicker"</strong> folder that was just created on your Desktop.</li>
+                <li>Go to your TikTok Live stream and <strong>Refresh</strong> the page.</li>
+                <li>Click anywhere on the stream page, then press <kbd>Shift</kbd> + <kbd>L</kbd> to <strong>start</strong> the auto clicker. Press <kbd>Shift</kbd> + <kbd>L</kbd> again to <strong>stop</strong> it.</li>
+            </ol>
+
+            <div class="success-box">
+                🎉 Setup Complete! Your extension is now ready to use on TikTok Live streams.
+            </div>
+
+            <div class="action-footer" style="justify-content: space-between;">
+                <button class="btn prev-btn" onclick="goToStep(1)">
+                    <span aria-hidden="true">&larr;</span>
+                    Previous
+                </button>
+                <button class="btn next-btn" onclick="finishTutorial()">
+                    Finish &times;
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Copy Code Functionality
+        function copyCode() {
+            const codeText = document.getElementById("codeBlock").innerText;
+            const copyBtn = document.getElementById("copyBtn");
+            
+            navigator.clipboard.writeText(codeText).then(() => {
+                copyBtn.innerText = "✓ Copied!";
+                copyBtn.style.backgroundColor = "#16a34a"; // Green color
+                
+                setTimeout(() => {
+                    copyBtn.innerText = "Copy Code";
+                    copyBtn.style.backgroundColor = "";
+                }, 2000);
+            }).catch(err => {
+                console.error("Failed to copy text: ", err);
+            });
+        }
+
+        // Navigation Functionality between steps
+        function goToStep(stepNumber) {
+            // Hide all steps
+            document.querySelectorAll('.step-section').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Show the target step
+            document.getElementById('step' + stepNumber).classList.add('active');
+        }
+
+        // Finish button functionality (Closes tab or shows alert depending on browser restrictions)
+        function finishTutorial() {
+            alert("You are all set! You can close this tutorial page now.");
+        }
+    </script>
+</body>
+</html>
